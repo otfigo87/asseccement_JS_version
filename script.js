@@ -76,8 +76,10 @@ const getForecast = (link) => {
         const description = forecast.shortForecast; //Current description
         const humidity = forecast.relativeHumidity.value; //Current humidity
         const windSpeed = forecast.windSpeed; //Current wind speed
+        const icon = forecast.icon; //Current icon
         console.log(periods);
-        //   console.log(description);
+        // console.log(description);
+        // console.log(icon);
 
         // Update the DOM to display the weather information on the page
         currentWeatherItemsEl.innerHTML = `
@@ -97,6 +99,39 @@ const getForecast = (link) => {
                         <p id="description">${description}</p>
                     </div>
         `;
+
+       
+        const dayPeriods = periods.filter((x, index) => index % 2 !== 0);
+        console.log(dayPeriods);
+        // let forecastDays = '';
+        dayPeriods.forEach((day, i) => {
+            let cards = '';
+            if(i == 0){
+                currentTempEl.innerHTML = `
+                 <img src=${day.icon} alt="weather icon" class="w-icon">
+                <div class="other">
+                    <div class="day">Tomorrow</div>
+                    <div class="temp">Highest: ${day.temperature}&#8457;</div>
+                    <div class="temp">${day.shortForecast}</div>
+                </div>
+                `;
+            } else {
+                cards = createCard(day);
+                weatherForecastEl.innerHTML += cards;
+            }
+        })
+
+        function createCard(data){
+            return `
+                 <div class="weather-forecast-item">
+                    <div class="day">${data.name}</div>
+                    <img src=${data.icon} alt="weather icon" class="w-icon">
+                    <div class="temp">${data.temperature}&#176; F</div>
+                </div>
+            `;
+        }
+
+
       })
       .catch((error) => {
         console.error("Error fetching forecast:", error);
