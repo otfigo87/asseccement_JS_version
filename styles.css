@@ -184,3 +184,8 @@ body {
      }
 
  }
+
+ #description{
+    color: rgb(238, 75, 75);
+    margin-top: 5px;
+ }
