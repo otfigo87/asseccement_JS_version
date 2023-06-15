@@ -44,7 +44,7 @@ setInterval(() => {
   const currentTime = hour + ":" + (minutes < 10 ? "0" + minutes : minutes);
   //console.log(date);
   // console.log(currentTime);
-  timeEl.innerHTML = currentTime + `<span id="am-pm">${ampm}</span>`; //span to get styles
+  timeEl.innerHTML = currentTime + `<span id="am-pm">${ampm}</span>`; //span to get same styles
   dateEl.innerHTML = `${days[day]}, ${date}, ${months[month]}`;
 }, 1000);
 
@@ -62,6 +62,7 @@ const getWeatherData = () => {
         console.error("Error fetching forecast:", error);
       });
 }
+
 getWeatherData();
 
 // Fetch the forecast data from the result of the first fetch
@@ -70,13 +71,14 @@ const getForecast = (link) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const periods = data.properties.periods; // 7 days weather
+        const periods = data.properties.periods; // 7 days weather (days & nights)
         const forecast = data.properties.periods[0]; //Current weather
         const temperature = forecast.temperature; //Current temperature
         const description = forecast.shortForecast; //Current description
         const humidity = forecast.relativeHumidity.value; //Current humidity
         const windSpeed = forecast.windSpeed; //Current wind speed
         const icon = forecast.icon; //Current icon
+        
         console.log(periods);
         // console.log(description);
         // console.log(icon);
@@ -101,7 +103,9 @@ const getForecast = (link) => {
         `;
 
        
-        const dayPeriods = periods.filter((x, index) => index % 2 !== 0);
+        const dayPeriods = periods.filter((x, index) => index !== 0 && index !== 1)
+        .slice(0,8);
+        
         console.log(dayPeriods);
         
         dayPeriods.forEach((day, i) => {
