@@ -103,16 +103,16 @@ const getForecast = (link) => {
        
         const dayPeriods = periods.filter((x, index) => index % 2 !== 0);
         console.log(dayPeriods);
-        // let forecastDays = '';
+        
         dayPeriods.forEach((day, i) => {
             let cards = '';
             if(i == 0){
                 currentTempEl.innerHTML = `
                  <img src=${day.icon} alt="weather icon" class="w-icon">
-                <div class="other">
+                 <div class="other">
                     <div class="day">Tomorrow</div>
-                    <div class="temp">Highest: ${day.temperature}&#8457;</div>
-                    <div class="temp">${day.shortForecast}</div>
+                    <div class="temp">Highest: <span id="tomorrow-temp">${day.temperature}&#8457;</span></div>
+                    <div class="temp" id="desc">${day.shortForecast}</div>
                 </div>
                 `;
             } else {

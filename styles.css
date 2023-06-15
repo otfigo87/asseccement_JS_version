@@ -7,9 +7,9 @@
 }
 
 body {
-    background: url('https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80');
+    /* background: url('https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     overflow: hidden;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
@@ -84,10 +84,20 @@ body {
 
 .future-forecast .today {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items:flex-end;
+    justify-content: space-between;
     margin: auto;
+    padding: 15px;
 }
+ .future-forecast .today .w-icon {
+    border-radius: 50%;
+    margin-right: 20px;
+ }
+
+ .w-icon {
+    border-radius: 5px;
+     margin: 10px;
+ }
 
 .future-forecast .today .day {
     padding: 5px 15px;
@@ -99,6 +109,13 @@ body {
 .future-forecast .today .temp {
     font-size: 20px;
     padding-top: 15px;
+}
+
+#desc {
+    color: rgb(152, 217, 245);
+}
+#tomorrow-temp{
+    color: rgb(231, 231, 171);
 }
 
 .future-forecast .weather-forecast {
@@ -149,7 +166,7 @@ body {
          overflow-x: scroll;
      }
 
-     .future-forecast .today .temp{
+     .future-forecast .today {
          font-size: 16px;
      }
 
@@ -189,3 +206,27 @@ body {
     color: rgb(238, 75, 75);
     margin-top: 5px;
  }
+
+ .main-icon {
+    margin-top: 0;
+ }
+/* For the video background */
+ .video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .video-bg {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-bg {
+    width: auto;
+    height: 100%;
+  }
+}
